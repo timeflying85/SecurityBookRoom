@@ -1,6 +1,7 @@
 package be.technifutur.security.utils;
 
 import be.technifutur.security.model.ReservationStatus;
+import be.technifutur.security.model.UtilisateurRole;
 import be.technifutur.security.model.entity.Material;
 import be.technifutur.security.model.entity.Reservation;
 import be.technifutur.security.model.entity.Salle;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collections;
 
 @Component
 public class DataInit implements InitializingBean {
@@ -90,26 +92,26 @@ public class DataInit implements InitializingBean {
 
 //     --------------------------------------------
 
-//        Utilisateur utilisateur = new Utilisateur();
-//
-//        utilisateur.setId(1);
-//        utilisateur.setUsername("timtim");
-//        utilisateur.setPassword("Cuicui");
-//        utilisateur.setRole("ADMIN");
-////        utilisateur.setReservation();
-//
-//        utilisateur = utilisateurRepository.save(utilisateur);
-//
-//
-//        Utilisateur utilisateur1 = new Utilisateur();
-//
-//        utilisateur1.setId(2);
-//        utilisateur1.setUsername("Maxou");
-//        utilisateur1.setPassword("Yop");
-//        utilisateur1.setRole("USER");
-////        utilisateur.setReservation();
-//
-//        utilisateur1 = utilisateurRepository.save(utilisateur1);
+        Utilisateur utilisateur = new Utilisateur();
+
+        utilisateur.setId(1);
+        utilisateur.setUsername("timtim");
+        utilisateur.setPassword("pass");
+        utilisateur.setRoles(Collections.singleton(UtilisateurRole.ADMIN));
+//        utilisateur.setReservation();
+
+        utilisateur = utilisateurRepository.save(utilisateur);
+
+
+        Utilisateur utilisateur1 = new Utilisateur();
+
+        utilisateur1.setId(2);
+        utilisateur1.setUsername("Maxou");
+        utilisateur1.setPassword("yop");
+        utilisateur1.setRoles(Collections.singleton(UtilisateurRole.USER));
+
+
+        utilisateur1 = utilisateurRepository.save(utilisateur1);
 
 //     ----------------------------------------------
 

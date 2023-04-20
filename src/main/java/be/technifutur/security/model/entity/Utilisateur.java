@@ -1,5 +1,6 @@
 package be.technifutur.security.model.entity;
 
+import be.technifutur.security.model.UtilisateurRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -37,7 +37,7 @@ public class Utilisateur implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     @Column(name = "role")
     @CollectionTable(name = "utilisateur_roles", joinColumns = @JoinColumn(name = "owner_id"))
-    private Set<String> roles = new LinkedHashSet<>();
+    private Set<UtilisateurRole> roles = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "bookedBy")
     private List<Reservation> reservations;

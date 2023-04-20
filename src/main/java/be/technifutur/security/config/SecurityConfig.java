@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -88,7 +89,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, "/reservation/**").authenticated()
                     .requestMatchers(HttpMethod.PATCH, "/reservation/{id:[0-9]+}/*").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST, "/auth/login" ).permitAll()
-                    .anyRequest().hasAnyRole("AUTRE", "ADMIN");
+                    .anyRequest().permitAll();
         });
 
         return http.build();
@@ -105,7 +106,7 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder encoder(){
 
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
 
     }
 
